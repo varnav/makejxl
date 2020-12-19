@@ -29,7 +29,7 @@ You can download and use it as single Windows binary, see [Releases](https://git
 
 Unfortunately antiviruses [don't like packed Python executables](https://github.com/pyinstaller/pyinstaller/issues?q=is%3Aissue+virus), so expect false positives from them if you go this way. Best way is pip.
 
-You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing_in_windows.md) in path, for example `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps`
+You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing_in_windows.md) in path. It's best to build it using [this tool](https://github.com/m-ab-s/media-autobuild_suite) and copy to `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps`
 
 ```cmd
 ./makejxl.exe "c:\\Users\\username\\Pictures\\My Vacation"

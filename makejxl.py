@@ -8,9 +8,8 @@ from subprocess import run
 from typing import Iterable
 
 import click
-from termcolor import colored
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 SUPPORTED_FORMATS = ['jpeg', 'jpg', 'png', 'apng', 'gif', 'exr', 'ppm', 'pfm', 'pgx']
 
 
@@ -39,6 +38,9 @@ def search_files(dirpath: str, recursive: bool) -> Iterable[str]:
 @click.option('-r', '--recursive', is_flag=True, help='Recursive')
 @click.option('-s', '--speed', default='kitten', help='Speed')
 def main(directory, recursive=False, speed='kitten'):
+    total = 0
+    num = 0
+
     if recursive:
         print('Processing recursively starting from', directory)
         recursive = True
@@ -53,12 +55,16 @@ def main(directory, recursive=False, speed='kitten'):
     for filepath in search_files(str(directory), recursive=recursive):
         fp = pathlib.PurePath(filepath)
         newpath = fp.parent.joinpath(fp.stem + '.' + 'jxl')
-        convert_cmd = f'cjxl -s {speed} {fp} {newpath}'
+        convert_cmd = f'cjxl --quiet -s {speed} {fp} {newpath}'
         conversion_return_code = run(convert_cmd, shell=True).returncode
         if conversion_return_code == 0:
-            print(colored(newpath, 'green'), 'ready')
+            saved = os.path.getsize(fp) - os.path.getsize(newpath)
+            total += saved
+            num += 1
+            print(newpath, 'ready, saved', round(saved / 1024), 'KB')
         else:
-            print(colored(fp, 'red'), 'error')
+            print(fp, 'error')
+    print('Total saved', round(total / 1024 / 1024), 'MB in', num, 'files')
 
 
 if __name__ == '__main__':

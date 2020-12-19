@@ -1,2 +1,1 @@
 click~=7.1.2
-termcolor~=1.1.0
