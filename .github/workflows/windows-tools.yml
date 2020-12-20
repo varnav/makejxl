@@ -1,0 +1,48 @@
+name: Linux build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    #runs-on: ubuntu-20.04
+    runs-on: gcr.io/jpegxl/jpegxl-builder
+
+    steps:
+    # - name: Install dependencies
+    #   run: |
+    #     apt-get update
+    #     apt-get install cmake clang doxygen g++-8 extra-cmake-modules libgif-dev libjpeg-dev ninja-build libgoogle-perftools-dev
+    #     update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 100
+    #     update-alternatives --install /usr/bin/clang clang /usr/bin/clang-7 100
+
+      - name: Build windows exe
+        run: |
+          BUILD_TARGET=x86_64-w64-mingw32 SKIP_TEST=1 ./ci.sh release -DJPEGXL_DEP_LICENSE_DIR=/usr/share/doc -DJPEGXL_STATIC=ON -DBUILD_TESTING=OFF -DJPEGXL_ENABLE_VIEWERS=OFF -DJPEGXL_ENABLE_PLUGINS=OFF -DJPEGXL_ENABLE_OPENEXR=OFF -DJPEGXL_ENABLE_TCMALLOC=OFF -DJPEGXL_ENABLE_FUZZERS=OFF
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: build/tools/cjxl.exe
+          asset_name: cjxl.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
