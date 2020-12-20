@@ -1,6 +1,8 @@
 # makejxl
 
-This tool will bulk encode image files in given directory to [JPEG-XL](https://gitlab.com/wg1/jpeg-xl). JPEG-XL encoder is still under development.
+This tool will bulk encode image files in given directory to [JPEG-XL](https://gitlab.com/wg1/jpeg-xl). It will leave original files intact, creating .jxl file next to each original.
+
+JPEG-XL encoder is still under development.
 
 ## Supported input file formats:
 

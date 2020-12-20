@@ -15,13 +15,13 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install cmake clang-7 doxygen g++-8 extra-cmake-modules libgif-dev libjpeg-dev ninja-build libgoogle-perftools-dev git pkg-config libbrotli-dev
-          update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 100
-          update-alternatives --install /usr/bin/clang clang /usr/bin/clang-7 100
+          sudo apt-get update
+          sudo apt-get install cmake clang-7 doxygen g++-8 extra-cmake-modules libgif-dev libjpeg-dev ninja-build libgoogle-perftools-dev git pkg-config libbrotli-dev
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 100
+          sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-7 100
           git clone https://gitlab.com/wg1/jpeg-xl.git --recursive
           cd jpeg-xl/docker/scripts/
-          bash jpegxl_builder.sh
+          sudo bash jpegxl_builder.sh
 
       - name: Build windows exe
         run: |
