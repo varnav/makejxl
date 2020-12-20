@@ -4,12 +4,13 @@
 import os
 import pathlib
 import sys
+from shutil import which
 from subprocess import run
 from typing import Iterable
 
 import click
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 SUPPORTED_FORMATS = ['jpeg', 'jpg', 'png', 'apng', 'gif', 'exr', 'ppm', 'pfm', 'pgx']
 
 
@@ -38,6 +39,12 @@ def search_files(dirpath: str, recursive: bool) -> Iterable[str]:
 @click.option('-r', '--recursive', is_flag=True, help='Recursive')
 @click.option('-s', '--speed', default='kitten', help='Speed')
 def main(directory, recursive=False, speed='kitten'):
+    if which('cjxl') is None:
+        print('cjxl not found')
+        exit(1)
+
+    jobs = len(os.sched_getaffinity(0)) - 1
+
     total = 0
     num = 0
 
@@ -55,7 +62,7 @@ def main(directory, recursive=False, speed='kitten'):
     for filepath in search_files(str(directory), recursive=recursive):
         fp = pathlib.PurePath(filepath)
         newpath = fp.parent.joinpath(fp.stem + '.' + 'jxl')
-        convert_cmd = f'cjxl --quiet -s {speed} {fp} {newpath}'
+        convert_cmd = f'cjxl --quiet -s {speed} --num_threads={jobs} {fp} {newpath}'
         conversion_return_code = run(convert_cmd, shell=True).returncode
         if conversion_return_code == 0:
             saved = os.path.getsize(fp) - os.path.getsize(newpath)

@@ -25,7 +25,7 @@ makejxl --recursive /home/username/myphotos
 
 You will need cjxl in path. You can get it by running build_cjxl.sh as root
 
-### Windows
+## Windows
 
 You can download and use it as single Windows binary, see [Releases](https://github.com/varnav/makejxl/releases/)
 
@@ -39,3 +39,10 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 
 Remember, you need double slashes in Windows.
 
+## See also
+[makejxl](https://github.com/varnav/makejxl/)
+[filmcompress](https://github.com/varnav/filmcompress/)
+
+## TODO
+
+* Decoder mode
