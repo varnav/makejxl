@@ -2,7 +2,7 @@
 
 This tool will bulk encode image files in given directory to [JPEG-XL](https://gitlab.com/wg1/jpeg-xl). It will leave original files intact, creating .jxl file next to each original.
 
-JPEG-XL encoder is still under development.
+JPEG-XL encoder is still under development, but format is frozen since 2020-12-24 and files encoded today will be readable by later versions of decoders.
 
 ## Supported input file formats:
 
@@ -40,8 +40,8 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 Remember, you need double slashes in Windows.
 
 ## See also
-[makejxl](https://github.com/varnav/makejxl/)
-[filmcompress](https://github.com/varnav/filmcompress/)
+* [makejxl](https://github.com/varnav/makejxl/)
+* [filmcompress](https://github.com/varnav/filmcompress/)
 
 ## TODO
 
