@@ -6,7 +6,7 @@ JPEG-XL encoder is still under development, but format is frozen since 2020-12-2
 
 ## Supported input file formats:
 
- * .jpeg/.jpg
+ * .jpeg/.jpg (lossless and reversible)
  * .exr
  * .gif
  * .pfm

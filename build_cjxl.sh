@@ -11,8 +11,9 @@ apt-get update
 apt-get -y install git wget ca-certificates cmake pkg-config libbrotli-dev libgif-dev libjpeg-dev libopenexr-dev libpng-dev libwebp-dev clang-7
 export CC=clang-7 CXX=clang++-7
 
+cd /tmp/
+rm -rf jpeg-xl
 git clone https://gitlab.com/wg1/jpeg-xl.git --recursive
-
 cd jpeg-xl
 rm -rf build
 mkdir build

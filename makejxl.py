@@ -7,6 +7,7 @@ import sys
 from shutil import which
 from subprocess import run
 from typing import Iterable
+import shlex
 
 import click
 
@@ -63,7 +64,7 @@ def main(directory, recursive=False, speed='kitten'):
         fp = pathlib.PurePath(filepath)
         newpath = fp.parent.joinpath(fp.stem + '.' + 'jxl')
         convert_cmd = f'cjxl --quiet -s {speed} --num_threads={jobs} {fp} {newpath}'
-        conversion_return_code = run(convert_cmd, shell=True).returncode
+        conversion_return_code = run(shlex.split(convert_cmd)).returncode
         if conversion_return_code == 0:
             saved = os.path.getsize(fp) - os.path.getsize(newpath)
             total += saved
