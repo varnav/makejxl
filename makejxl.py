@@ -10,7 +10,7 @@ from typing import Iterable
 
 import click
 
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 SUPPORTED_FORMATS = ['jpeg', 'jpg', 'png', 'apng', 'gif', 'exr', 'ppm', 'pfm', 'pgx']
 
 
@@ -43,7 +43,15 @@ def main(directory, recursive=False, speed='kitten'):
         print('cjxl not found')
         exit(1)
 
-    jobs = len(os.sched_getaffinity(0)) - 1
+    jobs = 1
+    try:
+        jobs = len(os.sched_getaffinity(0)) - 1
+    except Exception:
+        pass
+    try:
+        jobs = int(os.environ['NUMBER_OF_PROCESSORS']) - 1
+    except Exception:
+        pass
 
     total = 0
     num = 0

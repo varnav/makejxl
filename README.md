@@ -39,6 +39,13 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 
 Remember, you need double slashes in Windows.
 
+## Alternatives
+
+```sh
+apt install imagemagick parallel
+find /path/to/images -type f -iregex '.*\(gif\|jpe?g\|png\)$' | parallel convert {} {.}.jxl
+```
+
 ## See also
 * [makejxl](https://github.com/varnav/makejxl/)
 * [filmcompress](https://github.com/varnav/filmcompress/)
