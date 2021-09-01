@@ -28,3 +28,5 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF ..
 cmake --build . -- -j$(nproc --ignore=2)
+
+cp tools/cjxl /usr/bin/
