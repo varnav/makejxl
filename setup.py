@@ -35,7 +35,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering :: Image Processing",
         "Topic :: Utilities",
-        "Topic :: Multimedia :: Graphics",
+        "Topic :: Multimedia :: Graphics :: Graphics Conversion",
         "Environment :: Console",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3 :: Only",

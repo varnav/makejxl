@@ -25,6 +25,13 @@ makejxl --recursive /home/username/myphotos
 
 You will need cjxl in path. You can get it by running build_cjxl.sh as root
 
+Or simpler alternative that doesn't need this script:
+
+```sh
+apt install imagemagick parallel
+find /path/to/images -type f -iregex '.*\(gif\|jpe?g\|png\)$' | parallel convert {} {.}.jxl
+```
+
 ## Windows
 
 You can download and use it as single Windows binary, see [Releases](https://github.com/varnav/makejxl/releases/)
@@ -38,13 +45,6 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 ```
 
 Remember, you need double slashes in Windows.
-
-## Alternatives
-
-```sh
-apt install imagemagick parallel
-find /path/to/images -type f -iregex '.*\(gif\|jpe?g\|png\)$' | parallel convert {} {.}.jxl
-```
 
 ## See also
 * [makejxl](https://github.com/varnav/makejxl/)
