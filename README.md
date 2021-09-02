@@ -6,7 +6,7 @@ JPEG-XL encoder is still under development, but format is frozen since 2020-12-2
 
 ## Supported input file formats:
 
- * .jpeg/.jpg (lossless and reversible)
+ * .jpeg/.jpg (conversion is lossless and reversible)
  * .exr
  * .gif
  * .pfm
@@ -43,8 +43,6 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 ```cmd
 ./makejxl.exe "c:\\Users\\username\\Pictures\\My Vacation"
 ```
-
-Remember, you need double slashes in Windows.
 
 ## See also
 * [makejxl](https://github.com/varnav/makejxl/)
