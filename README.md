@@ -50,7 +50,7 @@ Or simpler alternative that doesn't need this script:
 
 ```powershell
 cd c:\photos
-Get-ChildItem -Path c:\temp\ -File -Include '*.jpg', '*.jpeg' -Name | Foreach {cjxl $_}
+Get-ChildItem -Path c:\temp\ -File -Include '*.jpg', '*.jpeg' -Name | Foreach {cjxl $_ $([io.path]::ChangeExtension($_, "jxl"))}
 ```
 
 ## See also
