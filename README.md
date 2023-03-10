@@ -4,6 +4,8 @@ This tool will bulk encode image files in given directory to [JPEG-XL](https://g
 
 JPEG-XL encoder is still under development, but format is frozen since 2020-12-24 and files encoded today will be readable by later versions of decoders.
 
+**You don't need to use this tool at all. Examples for Shell and PowerShell scripts are below.**
+
 ## Supported input file formats:
 
  * .jpeg/.jpg (conversion is lossless and reversible)
@@ -44,8 +46,14 @@ You will need [cjxl](https://gitlab.com/wg1/jpeg-xl/-/blob/master/doc/developing
 ./makejxl.exe "c:\\Users\\username\\Pictures\\My Vacation"
 ```
 
+Or simpler alternative that doesn't need this script:
+
+```powershell
+cd c:\photos
+Get-ChildItem -Path c:\temp\ -File -Include '*.jpg', '*.jpeg' -Name | Foreach {cjxl $_}
+```
+
 ## See also
-* [makejxl](https://github.com/varnav/makejxl/)
 * [filmcompress](https://github.com/varnav/filmcompress/)
 
 ## TODO
